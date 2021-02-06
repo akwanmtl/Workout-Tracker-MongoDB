@@ -1,9 +1,12 @@
+// Dependencies
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
+// Port number
 const PORT = process.env.PORT || 8080;
 
+// Express
 const app = express();
 
 app.use(logger("dev"));
@@ -18,9 +21,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useFindAndModify: false 
 });
 
+// Routes
 app.use(require("./routes/api-routes.js"))
 app.use(require("./routes/html-routes.js"))
 
+// Start app
 app.listen(PORT, () => {
   console.log(`App running on port http://localhost:${PORT}/`);
 });
